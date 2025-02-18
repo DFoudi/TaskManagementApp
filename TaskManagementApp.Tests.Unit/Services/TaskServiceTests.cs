@@ -71,8 +71,9 @@ namespace TaskManagementApp.Tests.Unit.Services
             var taskId = new Random().Next(1, 1000);
             var updatedTask = new TaskModel { Name = "Updated Task", IsCompleted = true };
 
-            _taskRepositoryMock.Setup(repo => repo.GetTaskByIdAsync(taskId))
-                .ReturnsAsync((TaskModel)null); // Simule une tâche inexistante
+            _taskRepositoryMock
+                .Setup(repo => repo.GetTaskByIdAsync(It.IsAny<int>()))
+                .ReturnsAsync((TaskModel?)null); // Ajoute explicitement le type nullable
 
             // Act
             var result = await _taskService.UpdateTaskAsync(updatedTask);

@@ -36,7 +36,7 @@ namespace TaskManagementApp.Services
             var existingTask = await _taskRepository.GetTaskByIdAsync(task.Id);
             if(existingTask == null)
             {
-                return null;
+                return existingTask ?? throw new Exception("Task not found");
             }
 
             return await _taskRepository.UpdateTaskAsync(task);

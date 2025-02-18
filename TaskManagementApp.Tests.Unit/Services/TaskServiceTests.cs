@@ -73,7 +73,7 @@ namespace TaskManagementApp.Tests.Unit.Services
 
             _taskRepositoryMock
                 .Setup(repo => repo.GetTaskByIdAsync(It.IsAny<int>()))
-                .ReturnsAsync((TaskModel?)null); // Ajoute explicitement le type nullable
+                .ReturnsAsync(() => null); // simule tâche inexistante
 
             // Act
             var result = await _taskService.UpdateTaskAsync(updatedTask);

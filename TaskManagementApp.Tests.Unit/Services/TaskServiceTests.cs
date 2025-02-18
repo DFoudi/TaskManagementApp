@@ -73,7 +73,7 @@ namespace TaskManagementApp.Tests.Unit.Services
 
             _taskRepositoryMock
                 .Setup(repo => repo.GetTaskByIdAsync(It.IsAny<int>()))
-                .ReturnsAsync(() => null!); // Syntaxe plus propre
+                .ReturnsAsync(() => null); // simule tâche inexistante
 
             // Act
             var result = await _taskService.UpdateTaskAsync(updatedTask);

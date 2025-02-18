@@ -31,12 +31,12 @@ namespace TaskManagementApp.Services
             return await _taskRepository.CreateTaskAsync(task);
         }
 
-        public async Task<TaskModel> UpdateTaskAsync(TaskModel task)
+        public async Task<TaskModel?> UpdateTaskAsync(TaskModel task)
         {
             var existingTask = await _taskRepository.GetTaskByIdAsync(task.Id);
-            if(existingTask == null)
+            if (existingTask == null)
             {
-                return existingTask ?? throw new Exception("Task not found");
+                return null; // Retourne null au lieu d'une exception
             }
 
             return await _taskRepository.UpdateTaskAsync(task);
